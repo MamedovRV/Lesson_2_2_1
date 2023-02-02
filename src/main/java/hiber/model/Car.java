@@ -7,6 +7,9 @@ import javax.persistence.*;
 @Table(name = "Cars")
 public class Car {
 
+    @OneToOne(mappedBy = "car")
+    private User user;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,9 +20,6 @@ public class Car {
 
     @Column(name = "series")
     private int series;
-
-    @OneToOne(mappedBy = "userCar")
-    private User carUser;
 
     public Car() {
     }
@@ -33,9 +33,6 @@ public class Car {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getModel() {
         return model;
@@ -51,14 +48,6 @@ public class Car {
 
     public void setSeries(int series) {
         this.series = series;
-    }
-
-    public User getCarUser() {
-        return carUser;
-    }
-
-    public void setCarUser(User carUser) {
-        this.carUser = carUser;
     }
 
     @Override
